@@ -1,0 +1,25 @@
+- name: db
+  hosts: db
+  become: yes
+  vars:
+    login_host: db.byklabs.store
+  tasks:
+  - name: Install MySQL server
+    ansible.builtin.dnf:
+      name: mysql-server
+      state: latest
+
+  - name: start and enable mysql server
+    ansible.builtin.service:
+      name: mysqld
+      state: started
+      enabled: yes
+    
+  - name: check DB connection
+    community.mysql.mysql_info:
+     login_user: root
+     login_password: ExpenseApp@1
+     login_host: "{{login_host}}"
+     filter: version
+    ignore_errors: yes 
+    register: mysql_connection_info
