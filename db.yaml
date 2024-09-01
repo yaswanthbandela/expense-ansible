@@ -31,3 +31,7 @@
      filter: version
     ignore_errors: yes 
     register: mysql_connection_info
+  
+  - name: print connection output
+    ansible.builtin.debug:
+      msg: "{{mysql_connection_info}}"
