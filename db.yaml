@@ -21,6 +21,7 @@
      - PyMySQL
      - cryptography
      state: latest
+     executable: pip3.10
     
   - name: check DB connection
     community.mysql.mysql_info:
