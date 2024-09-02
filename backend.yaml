@@ -56,6 +56,7 @@
 
     - name: import data to mysql
       community.mysql.mysql_db:
+       name: all
        login_host: "{{login_host}}"
        login_password: "{{login_password}}"
        login_user: "{{login_user}}"
