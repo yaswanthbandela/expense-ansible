@@ -1,6 +1,10 @@
 - name: configure backend server
   hosts: backend
   become: yes
+  vars:
+   login_user: "root"
+   login_host: "db.byklabs.store"
+   login_password: "ExpenseApp@1"
   tasks:
     - name: Disable Node.js module
       ansible.builtin.command: dnf module disable nodejs -y
@@ -29,7 +33,7 @@
 
     - name: unarchive the code
       ansible.builtin.unarchive:
-        src: /app/backend.zip
+        src: /tmp/backend.zip
         dest: /app
         remote_src: yes
     
@@ -50,5 +54,10 @@
        - cryptography
        state: latest
 
-    - name: load schema
-      ansible.builtin.command: "mysql -h db.byklabs.store -uroot -pExpenseApp@1 < /app/schema/backend.sql"
+    - name: import data to mysql
+      community.mysql.mysql_db:
+       login_host: "{{login_host}}"
+       login_password: "{{login_password}}"
+       login_user: "{{login_user}}"
+       state: import
+       target: /app/schema/backend.sql
