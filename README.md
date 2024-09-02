@@ -10,6 +10,7 @@ Date: 2024-09-01
 * ansible.builtin.debug
 * ansible.builtin.command
 * ansible.builtin.shell
+* ansible.builtin.user
 
 # NOTE
 * For first time, use 
