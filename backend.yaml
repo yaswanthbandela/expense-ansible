@@ -1,4 +1,4 @@
-- name: backend
+- name: configure backend server
   hosts: backend
   become: yes
   tasks:
@@ -11,8 +11,13 @@
     - name: Install nodejs
       ansible.builtin.dnf:
         name: nodejs
-        state: latest
+        state: installed
     
     - name: Add expense user
       ansible.builtin.user:
         name: expense
+    
+    - name: Download backend code
+      ansible.builtin.get_url:
+        url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+        dest: /app
