@@ -2,9 +2,9 @@
   hosts: backend
   become: yes
   vars:
-   login_user: "root"
-   login_host: "db.byklabs.store"
-   login_password: "ExpenseApp@1"
+   login_user: root
+   login_host: db.byklabs.store
+   login_password: ExpenseApp@1
   tasks:
     - name: Disable Node.js module
       ansible.builtin.command: dnf module disable nodejs -y
