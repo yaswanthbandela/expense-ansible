@@ -11,3 +11,6 @@ Date: 2024-09-01
 * ansible.builtin.command
 * ansible.builtin.shell
 
+# NOTE
+* For first time, use 
+    ### export ANSIBLE_HOST_KEY_CHECKING=False
