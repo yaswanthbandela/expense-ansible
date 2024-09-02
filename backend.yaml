@@ -25,10 +25,15 @@
     - name: Download backend code
       ansible.builtin.get_url:
         url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-        dest: /app
+        dest: /tmp/backend.zip
 
     - name: unarchive the code
       ansible.builtin.unarchive:
-        src: /app/expense-backend-v2.zip
+        src: /app/backend.zip
         dest: /app
         remote_src: yes
+    
+    - name: install npm dependencies
+      ansible.builtin.command: npm install
+      args:
+        chdir: /app
