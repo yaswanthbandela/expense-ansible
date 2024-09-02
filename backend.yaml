@@ -37,3 +37,18 @@
       ansible.builtin.command: npm install
       args:
         chdir: /app
+    
+    - name: copy service filter
+      ansible.builtin.copy:
+        src: backend.service
+        dest: /etc/systemd/system/backend.service
+
+    - name: Install MySQL dependencies
+      ansible.builtin.pip:
+       name: 
+       - PyMySQL
+       - cryptography
+       state: latest
+
+    - name: load schema
+      ansible.builtin.command: "mysql -h db.byklabs.store -uroot -pExpenseApp@1 < /app/schema/backend.sql"
