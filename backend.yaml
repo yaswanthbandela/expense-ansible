@@ -14,8 +14,11 @@
 
     - name: Install nodejs
       ansible.builtin.dnf:
-        name: nodejs
+        name: "{{item}}"
         state: installed
+      loop:
+      - nodejs
+      - mysql
     
     - name: Add expense user
       ansible.builtin.user:
@@ -56,9 +59,9 @@
 
     - name: import data to mysql
       community.mysql.mysql_db:
+       name: all      
        login_host: "{{login_host}}"
        login_password: "{{login_password}}"
        login_user: "{{login_user}}"
        target: /app/schema/backend.sql
        state: import
-       name: all
