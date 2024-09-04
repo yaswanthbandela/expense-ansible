@@ -11,6 +11,7 @@ Date: 2024-09-01
 * ansible.builtin.command
 * ansible.builtin.shell
 * ansible.builtin.user
+* ansible.builtin.file
 
 # NOTE
 * For first time, use 
