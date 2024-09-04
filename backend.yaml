@@ -67,7 +67,13 @@
        target: /app/schema/backend.sql
        state: import
 
-    - name: Reload backend service
+    - name: Demon reload
       ansible.builtin.service:
+        daemon_reload: true   
+
+    - name: start and enbale backend service
+      ansible.builtin.systemd_service:
         name: backend
-        state: reloaded   
+        state: started
+        enabled: yes
+
