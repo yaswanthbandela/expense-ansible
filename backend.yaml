@@ -18,13 +18,8 @@
         state: installed
       loop:
       - nodejs
-      - mysql-server
+      - mysql
 
-    - name: Start and enable mysql
-      ansible.builtin.service:
-        name: mysqld
-        state: started
-        enabled: yes
     
     - name: Add expense user
       ansible.builtin.user:
