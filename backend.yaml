@@ -65,3 +65,8 @@
        login_user: "{{login_user}}"
        target: /app/schema/backend.sql
        state: import
+
+    - name: Reload backend service
+      ansible.builtin.service:
+        name: backend
+        state: reloaded   
